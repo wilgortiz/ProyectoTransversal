@@ -1,4 +1,3 @@
-
 package accesoAdatos;
 
 import java.sql.Connection;
@@ -12,21 +11,17 @@ import javax.swing.JOptionPane;
 import modelo.Alumno;
 import modelo.Inscripcion;
 
-
 public class InscripcionData {
-    
+
     private Connection con = null;
 
     public InscripcionData() {
         con = Conexion.getConexion();
     }
-    
-    
-    public void inscribir(Inscripcion insc){
-        
+
+    public void inscribir(Inscripcion insc) {
+
         String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria) VALUES (?,?,?)";
-        
-        
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -34,7 +29,7 @@ public class InscripcionData {
             //esto si nosotros creamos la inscripcion y su repectivo idalumno e idmateria desde el evento de la vista
             ps.setInt(2, insc.getAlumnoI().getId_alumno());
             ps.setInt(3, insc.getMateriaI().getId_materia());
-            
+
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -42,7 +37,7 @@ public class InscripcionData {
                 insc.setIdInscripcion(rs.getInt("idInscripcion"));
                 JOptionPane.showMessageDialog(null, "Inscripcion completada.");
             }
-            
+
             ps.close();
 
         } catch (SQLException ex) {
@@ -53,24 +48,23 @@ public class InscripcionData {
             }
         }
     }
-    
-   public List<Inscripcion> materiasInscripto(Alumno alumno){
 
- String sql = "SELECT idInscripcion, nota, idAlumno, idMateria * FROM materia join inscripcion on(materia.idMateria=inscripcion.idMateria) WHERE idAlumno=?";
-           
+    public List<Inscripcion> materiasInscripto(Alumno alumno) {
+
+        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria * FROM materia join inscripcion on(materia.idMateria=inscripcion.idMateria) WHERE idAlumno=?";
+
         List<Inscripcion> inscripciones = new ArrayList();
         try {
-                
+
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Inscripcion materiaInsc = new Inscripcion();
 
                 materiaInsc.setIdInscripcion(rs.getInt("idInscripcion"));
-               materiaInsc.setNota(rs.getInt("nota"));
-               materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));  
-               materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria")); 
-              
+                materiaInsc.setNota(rs.getInt("nota"));
+                materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
+                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
 
                 inscripciones.add(materiaInsc);
 
@@ -82,5 +76,5 @@ public class InscripcionData {
         }
         return inscripciones;
     }
-    
+
 }
