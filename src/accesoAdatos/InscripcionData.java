@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import modelo.Alumno;
 import modelo.Inscripcion;
 
 
@@ -31,8 +32,8 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, insc.getNota());
             //esto si nosotros creamos la inscripcion y su repectivo idalumno e idmateria desde el evento de la vista
-            ps.setInt(2, insc.getAlumnoI().getIdAlumno());
-            ps.setInt(3, insc.getMateriaI().getIdMateria());
+            ps.setInt(2, insc.getAlumnoI().getId_alumno());
+            ps.setInt(3, insc.getMateriaI().getId_materia());
             
             ps.executeUpdate();
 
@@ -67,8 +68,8 @@ public class InscripcionData {
 
                 materiaInsc.setIdInscripcion(rs.getInt("idInscripcion"));
                materiaInsc.setNota(rs.getInt("nota"));
-               materiaInsc.getAlumnoI().setIdAlumno(rs.getInt("idAlumno"));
-               materiaInsc.getMateriaI().setIdMateria(rs.getInt("idMateria"));
+               materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));  
+               materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria")); 
               
 
                 inscripciones.add(materiaInsc);
