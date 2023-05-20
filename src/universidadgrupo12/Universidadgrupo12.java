@@ -27,7 +27,17 @@ public class Universidadgrupo12 {
      md.modificarEstado(2); //modificando el estado, funciona
      
      
-     
+     //PRUEBA DE MATERIADATA
+        MateriaData md = new MateriaData();
+        Materia m1 = new Materia("Algebra", 3, true);
+        Materia m2 = new Materia(6, "Algebra", 1, false);
+        md.guardarMateria(m1);
+        
+        System.out.println(md.buscarMateria(3).toString());
+        
+        System.out.println(md.modificarMateria(m2));
+        
+        System.out.println(md.listarMaterias().toString());
         
         
         
