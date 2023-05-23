@@ -19,8 +19,9 @@ public class InscripcionData {
         con = Conexion.getConexion();
     }
 
+    
     public void inscribir(Inscripcion insc) {
-
+        //inscribir al alumno
         String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria) VALUES (?,?,?)";
 
         try {
@@ -49,8 +50,9 @@ public class InscripcionData {
         }
     }
 
+    
     public List<Inscripcion> materiasInscripto(Alumno alumno) {
-
+//que muestre las materias que esta inscripto el alumno, una lista.
         String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria) WHERE idAlumno=?";
 
         List<Inscripcion> inscripciones = new ArrayList();
