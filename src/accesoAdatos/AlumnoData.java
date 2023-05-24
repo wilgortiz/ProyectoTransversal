@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Alumno;
+
 public class AlumnoData {
   
      private Connection con = null;

@@ -21,7 +21,8 @@ public class Universidadgrupo12 {
     
     public static void main(String[] args) {
 
-        //instancia de alumno y alumnodata
+//        //instancia de alumno y alumnodata
+
         Alumno al = new Alumno("21589754", "pascual", "darius", LocalDate.parse("1980-12-12"), true);
         AlumnoData alD = new AlumnoData();
         alD.guardarAlumno(al);
@@ -38,7 +39,7 @@ public class Universidadgrupo12 {
         Materia m2 = new Materia(6, "Algebra", 1, false);
         md.guardarMateria(m1);
 
-        //instancia de Inscripcion e InscripcionData
+//        instancia de Inscripcion e InscripcionData
         Inscripcion ins = new Inscripcion(9, al, m2);
         InscripcionData insD = new InscripcionData();
         insD.inscribir(ins);
