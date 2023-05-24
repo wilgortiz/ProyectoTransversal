@@ -23,12 +23,12 @@ public class Universidadgrupo12 {
 
 //        //instancia de alumno y alumnodata
 
-        Alumno al = new Alumno(8,"21156489", "pascual", "darius", LocalDate.parse("1980-12-12"), true);
+        Alumno al = new Alumno("21156489", "pascual", "darius", LocalDate.parse("1980-12-12"), true);
         AlumnoData alD = new AlumnoData();
         alD.guardarAlumno(al);
         //instancia de materia y materiadata
         MateriaData md = new MateriaData();
-        Materia m1 = new Materia(8,"LENGUA", 3, true);
+        Materia m1 = new Materia("LENGUA", 3, true);
 
         //   md.guardarMateria(m1);
         System.out.println(md.buscarMateria(3).toString());
@@ -40,7 +40,7 @@ public class Universidadgrupo12 {
         md.guardarMateria(m1);
 
 //        instancia de Inscripcion e InscripcionData
-        Inscripcion ins = new Inscripcion(4,9, al, m1);
+        Inscripcion ins = new Inscripcion(9, al, m1);
         InscripcionData insD = new InscripcionData();
         insD.inscribir(ins);
         
