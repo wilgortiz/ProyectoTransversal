@@ -10,13 +10,13 @@ package modelo;
  * @author wilgortiz
  */
 public class Materia {
+
     private int id_materia;
     private String nombre;
     private int año;
     private boolean estado;
-    
-    //los 3 constructores
 
+    //los 3 constructores
     public Materia() {
     }
 
@@ -69,7 +69,5 @@ public class Materia {
     public String toString() {
         return "Materia{" + "id_materia=" + id_materia + ", nombre=" + nombre + ", a\u00f1o=" + año + ", estado=" + estado + '}';
     }
-    
-    
-    
+
 }

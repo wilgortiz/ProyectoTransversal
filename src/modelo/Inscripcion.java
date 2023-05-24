@@ -10,17 +10,16 @@ package modelo;
  * @author 54266
  */
 public class Inscripcion {
+
     private int idInscripcion;
     private int nota;
-    
+
     //Consultar o averiguar como seria la relacion de esta clase con el idAlumno e idMateria
     private Alumno alumnoI;
     private Materia materiaI;
 
     public Inscripcion() {
     }
-    
-    
 
     public Inscripcion(int idInscripcion, int nota, Alumno alumnoI, Materia materiaI) {
         this.idInscripcion = idInscripcion;
@@ -34,8 +33,6 @@ public class Inscripcion {
         this.alumnoI = alumnoI;
         this.materiaI = materiaI;
     }
-    
-    
 
     public int getIdInscripcion() {
         return idInscripcion;
@@ -68,8 +65,5 @@ public class Inscripcion {
     public void setMateriaI(Materia materiaI) {
         this.materiaI = materiaI;
     }
-    
-    
-    
-    
+
 }

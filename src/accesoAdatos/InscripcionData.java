@@ -19,7 +19,6 @@ public class InscripcionData {
         con = Conexion.getConexion();
     }
 
-    
     public void inscribir(Inscripcion insc) {
         //inscribir al alumno
         String sql = "INSERT INTO inscripcion(nota, idAlumno, idMateria) VALUES (?,?,?)";
@@ -27,13 +26,13 @@ public class InscripcionData {
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, insc.getNota());
-            //esto si nosotros creamos la inscripcion y su repectivo idalumno e idmateria desde el evento de la vista
-           ps.setInt(2, 7); //buscar otra manera de setear los parametros
-            ps.setInt(3, 4);//buscar otra manera de setear los parametros
+            //esto si nosotros creamos la inscripcion y su repectivo idalumno 
+            //e idmateria desde el evento de la vista
+//            ps.setInt(2, 7); //buscar otra manera de setear los parametros
+//            ps.setInt(3, 4);//buscar otra manera de setear los parametros
 
-//ps.setInt(2, insc.getAlumnoI().getId_alumno());
-//ps.setInt(3, insc.getMateriaI().getId_materia());
-
+            ps.setInt(2, insc.getAlumnoI().getId_alumno());
+            ps.setInt(3, insc.getMateriaI().getId_materia());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -53,33 +52,36 @@ public class InscripcionData {
         }
     }
 
-    
     public List<Inscripcion> materiasInscripto(Alumno alumno) {
-//que muestre las materias que esta inscripto el alumno, una lista.
-        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria) WHERE idAlumno=?";
+        //que muestre las materias que esta inscripto el alumno, una lista.
+        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia "
+                + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
+                + " WHERE idAlumno=?";
 
-        List<Inscripcion> inscripciones = new ArrayList();
+        List<Inscripcion> inscripciones = new ArrayList<>();
+
         try {
-
             PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, alumno.getId_alumno());
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 Inscripcion materiaInsc = new Inscripcion();
-
                 materiaInsc.setIdInscripcion(rs.getInt("idInscripcion"));
                 materiaInsc.setNota(rs.getInt("nota"));
                 materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
                 materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
 
+//                materiaInsc.set
                 inscripciones.add(materiaInsc);
-
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alumno");
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion" + ex.getMessage());
         }
         return inscripciones;
     }
 
+//    public List<Inscripcion> materiasInscripto(Alumno alumno){}
 }
