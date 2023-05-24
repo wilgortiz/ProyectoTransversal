@@ -28,8 +28,11 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, insc.getNota());
             //esto si nosotros creamos la inscripcion y su repectivo idalumno e idmateria desde el evento de la vista
-            ps.setInt(2, insc.getAlumnoI().getId_alumno());
-            ps.setInt(3, insc.getMateriaI().getId_materia());
+           ps.setInt(2, 7); //buscar otra manera de setear los parametros
+            ps.setInt(3, 4);//buscar otra manera de setear los parametros
+
+//ps.setInt(2, insc.getAlumnoI().getId_alumno());
+//ps.setInt(3, insc.getMateriaI().getId_materia());
 
             ps.executeUpdate();
 
