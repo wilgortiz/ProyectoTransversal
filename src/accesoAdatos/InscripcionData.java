@@ -81,7 +81,7 @@ public class InscripcionData {
 
                 materiaInsc.setAlumnoI(aData.buscarAlumno(rs.getInt("idAlumno")));  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
                 materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));//de regeneracion, en su lugar cree los atributos alumnoData y 
-                                                                                      //materiaData en esta clase inicializados en el contructore de esta clase,
+                //materiaData en esta clase inicializados en el contructore de esta clase,
 //                materiaInsc.set
                 inscripciones.add(materiaInsc);
             }
@@ -93,7 +93,7 @@ public class InscripcionData {
         return inscripciones;
     }
 
- public List<Inscripcion> inscripciones() {
+    public List<Inscripcion> inscripciones() {
 
         String sql = "SELECT inscripcion.* FROM inscripcion";
 
@@ -120,5 +120,24 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla inscripcion");
         }
         return inscripciones;
+    }
+
+    public void borrarInscripcion(int id) {
+
+        String sql = "DELETE FROM inscripcion WHERE inscripcion.idInscripcion = ?";
+
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, " Inscipcion id=" + id + " borrada");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla inscripcion");
+        }
+
     }
 }
