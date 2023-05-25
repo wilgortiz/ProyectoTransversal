@@ -80,8 +80,8 @@ public class InscripcionData {
 //                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
 
                 materiaInsc.setAlumnoI(aData.buscarAlumno(rs.getInt("idAlumno")));  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
-                materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));//de regeneracion, en su lugar cree los atributos alumnoData y materiaData en esta clase inicializados en el contructore de esta clase,
-
+                materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));//de regeneracion, en su lugar cree los atributos alumnoData y 
+                                                                                      //materiaData en esta clase inicializados en el contructore de esta clase,
 //                materiaInsc.set
                 inscripciones.add(materiaInsc);
             }
