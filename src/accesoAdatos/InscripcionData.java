@@ -14,9 +14,12 @@ import modelo.Inscripcion;
 public class InscripcionData {
 
     private Connection con = null;
+    private MateriaData mData;
+    private AlumnoData aData; //estos atributos agregue(dario)
 
     public InscripcionData() {
         con = Conexion.getConexion();
+
     }
 
     public void inscribir(Inscripcion insc) {
@@ -54,9 +57,11 @@ public class InscripcionData {
 
     public List<Inscripcion> materiasInscripto(Alumno alumno) {
         //que muestre las materias que esta inscripto el alumno, una lista.
-        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia "
-                + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
-                + " WHERE idAlumno=?";
+//        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia "
+//                + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
+//                + " WHERE idAlumno=?";
+
+        String sql = "SELECT inscripcion.* FROM inscripcion WHERE idAlumno=(?)"; //agregue esto (dario)
 
         List<Inscripcion> inscripciones = new ArrayList<>();
 
@@ -69,8 +74,11 @@ public class InscripcionData {
                 Inscripcion materiaInsc = new Inscripcion();
                 materiaInsc.setIdInscripcion(rs.getInt("idInscripcion"));
                 materiaInsc.setNota(rs.getInt("nota"));
-                materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
-                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
+//                materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
+//                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
+
+                materiaInsc.getAlumnoI().setId_alumno(aData.buscarAlumno(rs.getInt("idAlumno")).getId_alumno());  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
+                materiaInsc.getMateriaI().setId_materia(mData.buscarMateria(rs.getInt("idMateria")).getId_materia());//de regeneracion, en su lugar cree los atributos alumnoData y materiaData en esta clase
 
 //                materiaInsc.set
                 inscripciones.add(materiaInsc);
