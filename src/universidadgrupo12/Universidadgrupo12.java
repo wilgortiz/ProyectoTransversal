@@ -44,7 +44,7 @@ public class Universidadgrupo12 {
 
         //PRUEBA INSCRIPCION
         System.out.println("PRUEBA INSCRIPCION:");
-        Inscripcion ins = new Inscripcion(9, al, m1);
+        Inscripcion ins = new Inscripcion(1,9, al, m1);
         InscripcionData insD = new InscripcionData();
         insD.inscribir(ins);
         System.out.println("Inscripcion completada");
