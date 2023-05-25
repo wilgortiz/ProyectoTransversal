@@ -48,7 +48,7 @@ public class Universidadgrupo12 {
         InscripcionData insD = new InscripcionData();
         insD.inscribir(ins);
         System.out.println("Inscripcion completada");
-        System.out.println("Inscipcion de aluno id=1:");
+        System.out.println("Inscripcion de alumno id=1:");
         System.out.println(insD.inscripcionesPorAlumno(1).toString());
         System.out.println("Todas las inscripciones:");
         System.out.println(insD.inscripciones().toString());
