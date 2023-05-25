@@ -53,7 +53,7 @@ public class MateriaData {
 
         } catch (SQLException ex) {
             if (ex.getErrorCode() == 1062) {
-                JOptionPane.showMessageDialog(null, "ya existe ");
+                JOptionPane.showMessageDialog(null, "esta ya existe");
             } else {
                 JOptionPane.showMessageDialog(null, "Error al acceder a la tabla materia" + ex.getErrorCode());
             }
