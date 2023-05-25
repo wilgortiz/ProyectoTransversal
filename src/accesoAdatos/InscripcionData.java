@@ -93,5 +93,32 @@ public class InscripcionData {
         return inscripciones;
     }
 
-//    public List<Inscripcion> materiasInscripto(Alumno alumno){}
+ public List<Inscripcion> inscripciones() {
+
+        String sql = "SELECT inscripcion.* FROM inscripcion";
+
+        List<Inscripcion> inscripciones = new ArrayList();
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            Inscripcion materiaInsc;
+            while (rs.next()) {
+                materiaInsc = new Inscripcion();
+
+                materiaInsc.setIdInscripcion(rs.getInt("idInscripcion"));
+                materiaInsc.setNota(rs.getInt("nota"));
+                materiaInsc.setAlumnoI(aData.buscarAlumno(rs.getInt("idMateria")));
+                materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));
+
+                inscripciones.add(materiaInsc);
+
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla inscripcion");
+        }
+        return inscripciones;
+    }
 }

@@ -20,7 +20,7 @@ import modelo.Materia;
 public class Universidadgrupo12 {
 
     public static void main(String[] args) {
- //PRUEBA DE ALUMNO
+        //PRUEBA DE ALUMNO
         System.out.println("PRUEBA DE ALUMNO:");
         Alumno al = new Alumno(1, "21589754", "pascual", "darius", LocalDate.parse("1980-12-12"), true);
         AlumnoData alD = new AlumnoData();
@@ -28,8 +28,7 @@ public class Universidadgrupo12 {
         System.out.println("Alumno creado y guardado con exito en BD");
         System.out.println("Buscar Alumno id=1:");
         System.out.println(alD.buscarAlumno(1).toString());
-      
-        
+
         //PRUEBA DE MATERIA
         System.out.println("PRUEBA DE MATERIA:");
         MateriaData md = new MateriaData();
@@ -39,10 +38,9 @@ public class Universidadgrupo12 {
         System.out.println("Materias creadas y guardadas con exito en BD");
         System.out.println("Buscar materia id=1:");
         System.out.println(md.buscarMateria(1).toString());
-        System.out.println("Modificar materia " + m1.getNombre()+ ":");
+        System.out.println("Modificar materia " + m1.getNombre() + ":");
         System.out.println("ahora es: " + md.modificarMateria(m2).toString());
         System.out.println("Listar materias:" + md.listarMaterias().toString());
-        
 
         //PRUEBA INSCRIPCION
         System.out.println("PRUEBA INSCRIPCION:");
@@ -52,6 +50,8 @@ public class Universidadgrupo12 {
         System.out.println("Inscripcion completada");
         System.out.println("Inscipcion de aluno id=1:");
         System.out.println(insD.inscripcionesPorAlumno(1).toString());
+        System.out.println("Todas las inscripciones:");
+        System.out.println(insD.inscripciones().toString());
 //        //instancia de alumno y alumnodata
 //        Alumno al = new Alumno(7, "30258697", "koka", "martin", LocalDate.parse("1986-12-05"), true);
 //        AlumnoData alD = new AlumnoData();
