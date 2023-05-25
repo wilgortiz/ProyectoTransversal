@@ -77,8 +77,8 @@ public class InscripcionData {
 //                materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
 //                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
 
-                materiaInsc.getAlumnoI().setId_alumno(aData.buscarAlumno(rs.getInt("idAlumno")).getId_alumno());  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
-                materiaInsc.getMateriaI().setId_materia(mData.buscarMateria(rs.getInt("idMateria")).getId_materia());//de regeneracion, en su lugar cree los atributos alumnoData y materiaData en esta clase
+                materiaInsc.setAlumnoI(aData.buscarAlumno(rs.getInt("idAlumno")));  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
+                materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));//de regeneracion, en su lugar cree los atributos alumnoData y materiaData en esta clase
 
 //                materiaInsc.set
                 inscripciones.add(materiaInsc);
