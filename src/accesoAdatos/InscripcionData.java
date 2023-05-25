@@ -57,7 +57,7 @@ public class InscripcionData {
         }
     }
 
-    public List<Inscripcion> materiasInscripto(Alumno alumno) {
+    public List<Inscripcion> inscripcionesPorAlumno(int id) {
         //que muestre las materias que esta inscripto el alumno, una lista.
 //        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia "
 //                + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
@@ -69,7 +69,7 @@ public class InscripcionData {
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, alumno.getId_alumno());
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
