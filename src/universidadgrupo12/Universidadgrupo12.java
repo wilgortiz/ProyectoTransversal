@@ -52,6 +52,9 @@ public class Universidadgrupo12 {
         System.out.println(insD.inscripcionesPorAlumno(1).toString());
         System.out.println("Todas las inscripciones:");
         System.out.println(insD.inscripciones().toString());
+        System.out.println("Eliminar inscripcion id=1:");
+        insD.borrarInscripcion(1);
+        System.out.println("Inscripcion borrada");
 //        //instancia de alumno y alumnodata
 //        Alumno al = new Alumno(7, "30258697", "koka", "martin", LocalDate.parse("1986-12-05"), true);
 //        AlumnoData alD = new AlumnoData();
