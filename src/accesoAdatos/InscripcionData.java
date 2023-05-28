@@ -60,8 +60,8 @@ public class InscripcionData {
     public List<Inscripcion> inscripcionesPorAlumno(int id) {
         //que muestre las materias que esta inscripto el alumno, una lista.
 //        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia "
-//                + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
-//                + " WHERE idAlumno=?";
+//        + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
+//        + " WHERE idAlumno=?";
 
         String sql = "SELECT inscripcion.* FROM inscripcion WHERE idAlumno=(?)"; //agregue esto (dario)
 
@@ -81,7 +81,7 @@ public class InscripcionData {
 
                 materiaInsc.setAlumnoI(aData.buscarAlumno(rs.getInt("idAlumno")));  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
                 materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));//de regeneracion, en su lugar cree los atributos alumnoData y 
-                //materiaData en esta clase inicializados en el contructore de esta clase,
+                //materiaData en esta clase inicializados en el contructor de esta clase,
 //                materiaInsc.set
                 inscripciones.add(materiaInsc);
             }
