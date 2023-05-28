@@ -109,7 +109,6 @@ public class MateriaData {
 
     }
 
-   
     public Materia modificarMateria(Materia materia) {
 
         String sql = "UPDATE materia SET nombre = ? , año = ?, estado = ? WHERE  idMateria = ?";
