@@ -226,11 +226,15 @@ public class VistaInscripcion extends javax.swing.JInternalFrame {
     private void checkInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInscriptasActionPerformed
         CargarTablaInsc();
         checkNoInscriptas.setSelected(false);
+        btnInscribir.setEnabled(false);
+        btnAnular.setEnabled(true);
     }//GEN-LAST:event_checkInscriptasActionPerformed
 
     private void checkNoInscriptasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkNoInscriptasActionPerformed
         CargarTablaNoInsc();
         checkInscriptas.setSelected(false);
+        btnInscribir.setEnabled(true);
+        btnAnular.setEnabled(false);
     }//GEN-LAST:event_checkNoInscriptasActionPerformed
 
     private void btnInscribirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscribirActionPerformed
