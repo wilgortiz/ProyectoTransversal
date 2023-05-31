@@ -159,4 +159,27 @@ public class InscripcionData {
         }
 
     }
+    
+    public void modificarNota(int nota, int id) {
+
+        String sql = "UPDATE inscripcion  SET nota=? WHERE inscripcion.idInscripcion=?";
+
+        PreparedStatement ps;
+        try {
+
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, nota);
+            ps.setInt(2, id);
+            int fila = ps.executeUpdate();
+            ps.close();
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " nota modificada");
+            }
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion");
+        }
+
+    }
 }
