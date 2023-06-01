@@ -90,6 +90,11 @@ public class VistaNotas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaInscripciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaInscripcionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaInscripciones);
 
         btnGuardar.setText("Guardar");
@@ -112,6 +117,12 @@ public class VistaNotas extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
+                .addGap(147, 147, 147)
+                .addComponent(btnGuardar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addComponent(btnSalir)
+                .addGap(45, 45, 45))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(167, 167, 167)
@@ -122,12 +133,6 @@ public class VistaNotas extends javax.swing.JInternalFrame {
                         .addGap(33, 33, 33)
                         .addComponent(opcionAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(btnGuardar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,8 +144,8 @@ public class VistaNotas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(opcionAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGuardar)
                     .addComponent(btnSalir))
@@ -174,6 +179,7 @@ public class VistaNotas extends javax.swing.JInternalFrame {
         tablaInscripciones.setModel(modelo); //le setemos por ultimo el modelo a la tabla
         borrarFilas();
         CargarTablaInsc();
+        
     }//GEN-LAST:event_formInternalFrameOpened
 
     private void opcionAlumnoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_opcionAlumnoItemStateChanged
@@ -187,13 +193,17 @@ public class VistaNotas extends javax.swing.JInternalFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
        int id = (int) modelo.getValueAt(tablaInscripciones.getSelectedRow(), 0);
-        int nota = (Integer) tablaInscripciones.getValueAt(tablaInscripciones.getSelectedRow(), 2);
+       int nota =  Integer.parseInt((String) modelo.getValueAt(tablaInscripciones.getSelectedRow(), 2));
         
         System.out.println(id);
-        System.out.println(nota);
+    System.out.println(nota);
         
-        iD.modificarNota(nota, id);
+        iD.modificarNota(id, nota);
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void tablaInscripcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaInscripcionesMouseClicked
+        
+    }//GEN-LAST:event_tablaInscripcionesMouseClicked
 
     public void CargarTablaInsc() {
 

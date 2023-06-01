@@ -32,6 +32,11 @@ public class InscripcionData {
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, insc.getNota());
+            //esto si nosotros creamos la inscripcion y su repectivo idalumno 
+            //e idmateria desde el evento de la vista
+//            ps.setInt(2, 7); //buscar otra manera de setear los parametros
+//            ps.setInt(3, 4);//buscar otra manera de setear los parametros
+
             ps.setInt(2, insc.getAlumnoI().getId_alumno());
             ps.setInt(3, insc.getMateriaI().getId_materia());
             ps.executeUpdate();
@@ -54,6 +59,10 @@ public class InscripcionData {
     }
 
     public List<Inscripcion> inscripcionesPorAlumno(int id) {
+        //que muestre las materias que esta inscripto el alumno, una lista.
+//        String sql = "SELECT idInscripcion, nota, idAlumno, idMateria FROM materia "
+//                + "JOIN inscripcion ON (materia.idMateria = inscripcion.idMateria)"
+//                + " WHERE idAlumno=?";
 
         String sql = "SELECT inscripcion.* FROM inscripcion WHERE idAlumno=(?)"; //agregue esto (dario)
 
@@ -68,6 +77,9 @@ public class InscripcionData {
                 Inscripcion materiaInsc = new Inscripcion();
                 materiaInsc.setIdInscripcion(rs.getInt("idInscripcion"));
                 materiaInsc.setNota(rs.getInt("nota"));
+//                materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
+//                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
+
                 materiaInsc.setAlumnoI(aData.buscarAlumno(rs.getInt("idAlumno")));  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
                 materiaInsc.setMateriaI(mData.buscarMateria(rs.getInt("idMateria")));//de regeneracion, en su lugar cree los atributos alumnoData y 
                 //materiaData en esta clase inicializados en el contructore de esta clase,
@@ -81,8 +93,8 @@ public class InscripcionData {
         }
         return inscripciones;
     }
-    
-     public List<Materia> noInscriptas(int id) {
+
+    public List<Materia> noInscriptas(int id) {
 
         String sql = "SELECT * FROM materia WHERE idMateria NOT IN (SELECT idMateria FROM inscripcion WHERE idAlumno = ?);";
 
@@ -94,9 +106,12 @@ public class InscripcionData {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Materia m1= new Materia();
+                Materia m1 = new Materia();
                 m1.setId_materia(rs.getInt("idMateria"));
                 m1.setAño(rs.getInt("año"));
+//                materiaInsc.getAlumnoI().setId_alumno(rs.getInt("idAlumno"));
+//                materiaInsc.getMateriaI().setId_materia(rs.getInt("idMateria"));
+
                 m1.setNombre(rs.getString("nombre"));  //agregue esto, es lo mismo del profe pero sin hacer un metodo 
                 m1.setEstado(rs.getBoolean("estado"));//de regeneracion, en su lugar cree los atributos alumnoData y 
                 //materiaData en esta clase inicializados en el contructore de esta clase,
@@ -140,7 +155,7 @@ public class InscripcionData {
         return inscripciones;
     }
 
-    public void borrarInscripcion(int idAlumno,int idMateria) {
+    public void borrarInscripcion(int idAlumno, int idMateria) {
 
         String sql = "DELETE FROM inscripcion WHERE idAlumno = ? AND idMateria = ?";
 
@@ -159,10 +174,10 @@ public class InscripcionData {
         }
 
     }
-    
-    public void modificarNota(int nota, int id) {
 
-        String sql = "UPDATE inscripcion  SET nota=? WHERE inscripcion.idInscripcion=?";
+    public void modificarNota(int id,int nota) {
+
+        String sql = "UPDATE `inscripcion` SET `nota` = ? WHERE `inscripcion`.`idInscripcion` = ?;";
 
         PreparedStatement ps;
         try {
@@ -176,9 +191,9 @@ public class InscripcionData {
                 JOptionPane.showMessageDialog(null, " nota modificada");
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
 
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion");
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion" + ex.getMessage());
         }
 
     }
