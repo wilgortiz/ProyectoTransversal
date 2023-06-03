@@ -104,8 +104,18 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jLabel7.setText("Dni:");
 
         checkActivo.setText("Activo");
+        checkActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkActivoActionPerformed(evt);
+            }
+        });
 
         checkInactivo.setText("Inactivo");
+        checkInactivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkInactivoActionPerformed(evt);
+            }
+        });
 
         jBtnSalir.setBackground(new java.awt.Color(255, 51, 51));
         jBtnSalir.setForeground(new java.awt.Color(255, 255, 255));
@@ -283,6 +293,14 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
     private void jBtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalirActionPerformed
         dispose();       
     }//GEN-LAST:event_jBtnSalirActionPerformed
+
+    private void checkActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkActivoActionPerformed
+        checkInactivo.setSelected(false);
+    }//GEN-LAST:event_checkActivoActionPerformed
+
+    private void checkInactivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkInactivoActionPerformed
+        checkActivo.setSelected(false);
+    }//GEN-LAST:event_checkInactivoActionPerformed
 
     public void limpiar() {
         textoId.setText("");
