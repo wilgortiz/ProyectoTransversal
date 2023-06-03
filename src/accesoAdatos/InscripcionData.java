@@ -1,12 +1,16 @@
 package accesoAdatos;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Alumno;
 import modelo.Inscripcion;
@@ -175,7 +179,7 @@ public class InscripcionData {
 
     }
 
-    public void modificarNota(int id,int nota) {
+    public void modificarNota(int id, int nota) {
 
         String sql = "UPDATE `inscripcion` SET `nota` = ? WHERE `inscripcion`.`idInscripcion` = ?;";
 
@@ -196,5 +200,32 @@ public class InscripcionData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Inscripcion" + ex.getMessage());
         }
 
+    }
+
+    public List<Alumno> alumnosPorMateria(int idMateria) {
+        List<Alumno> listaAlumnos = new ArrayList<>();
+        String sql = "SELECT alumno.* FROM alumno JOIN inscripcion on (alumno.idAlumno = inscripcion.idAlumno) JOIN materia on (materia.idMateria = inscripcion.idMateria) WHERE materia.idMateria = ?;";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idMateria);
+            ResultSet rs = ps.executeQuery();
+
+            
+
+            while (rs.next()) {
+                Alumno a1 = new Alumno();
+                a1.setNombre(rs.getString("nombre"));
+                a1.setApellido(rs.getString("apellido"));
+                a1.setDni(rs.getString("dni"));
+                
+                listaAlumnos.add(a1);
+
+            }
+            ps.close();
+        } catch (SQLException ex) {
+           
+        }
+      return listaAlumnos;
     }
 }
